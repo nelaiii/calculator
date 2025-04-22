@@ -10,7 +10,6 @@
 
 using namespace std;
 using namespace chrono;
-//Фесенко
 const vector <int> tested_set_prime_perfect = {1, 2, 3, 4, 62, 6, 28, 211, 503, 496, 8128};
 const vector <pair<int, int>> tested_set_gcd_lcm = {{5, 25}, {62, 64}, {4, 1257}, {3, 3}, {51, 249}, {3, 4}, {88, 98}, {66, 666}, {589350, 209580202}, {98267592, 8020851}, {200111444, 201010202}};
 const vector <pair<int, int>> tested_set_ca_1 = {{1, 2}, {3, 62}, {1, 2}, {1, 2}, {2, 3}, {12, 6}, {1, 8}, {1, 8}, {3, 4}, {3, 4}, {425, 64}};
@@ -23,7 +22,6 @@ const vector <pair<string, string>> prime_and_perfect_check = {{"простое"
 const vector <pair<int, long long int>> gcd_and_lcm_check = {{5, 25}, {2, 1984}, {1, 5028}, {3, 3}, {3, 4233}, {1, 12}, {2, 4312}, {6, 7326}, {2, 61758046024350},{3, 262729904520264},{2, 20112220890475844}};
 const vector <pair<long long int,long long int>> calc_check = {{5, 6}, {79, 992}, {0, 2}, {-1, 6}, {1, 1}, {10, 3}, {19, 24}, {-13, 24}, {1, 1}, {1, 2}, {-867, 64}};
 
-//Ямщикова
 vector<int> find_or_add_div(int value, map<int, vector<int>> &divs) {
     vector<int> divisors;
     if (divs.find(value) != divs.end()) {//если делители есть в map:
@@ -38,7 +36,6 @@ vector<int> find_or_add_div(int value, map<int, vector<int>> &divs) {
     return divisors;
 }
 
-//Ямщикова
 pair<string, string> is_prime_and_perfect(int value, map<int, vector<int>> &divs) {
     pair<string, string> parameters;
     vector<int> array_divs = find_or_add_div(value, divs);
@@ -51,7 +48,6 @@ pair<string, string> is_prime_and_perfect(int value, map<int, vector<int>> &divs
     return parameters;
 }
 
-//Фесенко
 int gcd(pair<int, int> values, map<int, vector<int>> &divs) { // greatest common divisor
     vector<int> divs_1 = find_or_add_div(abs(values.first), divs);
     vector<int> divs_2 = find_or_add_div(abs(values.second), divs);
@@ -63,14 +59,12 @@ int gcd(pair<int, int> values, map<int, vector<int>> &divs) { // greatest common
     return 1;
 }
 
-//Фесенко
 long long int lcm(pair<int, int> values, map<int, vector<int>> &divs) { // lowest common multiple
     int value_1 = abs(values.first), value_2 = abs(values.second);
     auto lcm_res = (long long int) ((((double) value_1) / ((double) gcd(values, divs))) * (double) value_2);
     return lcm_res;
 }
 
-//Ямщикова
 void analyzer(pair<int, int> values, map<int, vector<int>> &divs) {
     system_clock::time_point start = system_clock::now();
     pair<string, string> str_1 = is_prime_and_perfect(values.first, divs);
@@ -84,7 +78,6 @@ void analyzer(pair<int, int> values, map<int, vector<int>> &divs) {
     cout << "Время выполнения:" << sec.count() << endl;
 }
 
-//Фесенко
 pair<long long int,long long int> calc(pair<int, int> value1, pair<int, int> value2, char s, map<int, vector<int>> &divs) {
     int denominator = lcm({value1.second, value2.second}, divs);
     value1.first *= (denominator / value1.second);
@@ -100,7 +93,6 @@ pair<long long int,long long int> calc(pair<int, int> value1, pair<int, int> val
     }
     return result;
 }
-//Фесенко
 void testing_function(map<int, vector<int>> &divs) {
     system_clock::time_point start = system_clock::now();
     for (int i = 0; i < tested_set_prime_perfect.size(); i ++) {
@@ -113,7 +105,6 @@ void testing_function(map<int, vector<int>> &divs) {
     duration<double> sec = end - start;
     cout << "Время выполнения:" << sec.count() << endl;
 }
-//Ямщикова
 int check_and_run(int func) {
     map<int, vector<int>> divs; int flag = 1;
     if (func == 1) {
@@ -140,8 +131,6 @@ int check_and_run(int func) {
     return flag;
 }
 
-
-//Ямщикова
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     int func, flag, flag_1 = 1;
